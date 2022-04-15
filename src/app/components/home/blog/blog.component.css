@@ -1,0 +1,17 @@
+.example-card {
+  max-width: 100%;
+}
+
+.blogBG
+{
+  background-size: 100% 100%!important;
+  color: white;
+}
+.layer {
+  background-color: rgba(0, 0, 0, 0.151);
+  position: absolute;
+  top: 8.5%;
+  left: 0;
+  height: 50%;
+  width: 100%;
+}

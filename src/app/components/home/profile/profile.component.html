@@ -1,0 +1,195 @@
+<div class="container">
+  <div class="row shadow p-4 mt-5">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="w-100">
+      <div class="p-2 m-2" style="display: flex; justify-content: center">
+        <img
+          src="{{profileImage}}"
+          style="
+            border-radius: 50%;
+            background-color: black;
+            width: 200px;
+            height: 200px;
+          "
+          (click)="openFileChooser()"
+        />
+        <input
+          type="file"
+          #uploadImage
+          accept="image/*"
+          (change)="handleImage($event)"
+          style="display: none"
+        />
+      </div>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Personal Information </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-form-field appearance="fill" class="p-2">
+          <mat-label>Full Name</mat-label>
+          <input
+            matInput
+            type="text"
+            title="Full Name"
+            formControlName="Name"
+          />
+          <mat-error *ngIf="formFieldHasError('Name')"
+            >This field is required.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="p-2">
+          <mat-label>D.O.B</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="DOB" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="formFieldHasError('DOB')"
+            >This field is required.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="p-2" title="Gender">
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="Gender">
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+            <mat-option value="Other">Other</mat-option>
+          </mat-select>
+          <mat-error *ngIf="formFieldHasError('Gender')"
+            >This field is required.</mat-error
+          >
+        </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Contact Information </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-form-field appearance="fill" class="p-2" title="Email">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" readonly formControlName="Email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="p-2" title="Mobile Number">
+          <mat-label>Mobile Number</mat-label>
+          <input matInput type="text" formControlName="MobileNumber" />
+          <mat-error *ngIf="formFieldHasError('MobileNumber')"
+            >This field is required.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="p-2" title="Street">
+          <mat-label>Street</mat-label>
+          <input matInput type="text" formControlName="Street" />
+          <mat-error *ngIf="formFieldHasError('Street')"
+            >This field is required.</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="p-2" title="Country">
+          <mat-label>Country</mat-label>
+          <mat-select
+            formControlName="Country"
+            (selectionChange)="countryChanged()"
+          >
+            <mat-option
+              *ngFor="let country of countries"
+              value="{{ country.country_name }}"
+              >{{ country.country_name }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="formFieldHasError('Country')"
+            >This field is required.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="p-2" title="State">
+          <mat-label>State</mat-label>
+          <mat-select
+            formControlName="State"
+            (selectionChange)="stateChanged()"
+          >
+            <mat-option
+              *ngFor="let state of states"
+              value="{{ state.state_name }}"
+              >{{ state.state_name }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="formFieldHasError('State')"
+            >This field is required.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="p-2" title="City">
+          <mat-label>City</mat-label>
+          <mat-select formControlName="City">
+            <mat-option
+              *ngFor="let city of cities"
+              value="{{ city.city_name }}"
+              >{{ city.city_name }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="formFieldHasError('City')"
+            >This field is required.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="p-2" title="Zip Code">
+          <mat-label>ZIP Code</mat-label>
+          <input
+            matInput
+            type="number"
+            title="ZIP Code"
+            formControlName="ZipCode"
+          />
+          <mat-error *ngIf="formFieldHasError('ZipCode')"
+            >This field is required.</mat-error
+          >
+        </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Social Information </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-form-field appearance="fill" class="p-2" title="Website">
+          <mat-label>Website</mat-label>
+          <input
+            matInput
+            type="text"
+            title="Full Name"
+            formControlName="Website"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="p-2" title="LinkedIn">
+          <mat-label>LinkedIn</mat-label>
+          <input
+            matInput
+            type="text"
+            title="Email"
+            formControlName="LinkedIn"
+          />
+        </mat-form-field>
+
+      </mat-expansion-panel>
+
+      <div style="display: flex; justify-content: end" class="mt-4 mr-2">
+        <button
+          mat-raised-button
+          color="primary"
+          class="m-1"
+          type="submit"
+          [disabled]="profileForm.invalid"
+        >
+          Submit
+        </button>
+        <button mat-raised-button color="accent" type="button" class="m-1">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

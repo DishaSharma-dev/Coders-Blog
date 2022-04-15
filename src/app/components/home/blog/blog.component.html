@@ -1,0 +1,68 @@
+<div
+  class="container-fluid text-center blogBG"
+  style="height: 50%"
+  [style.background]="'no-repeat url(' + blogDetails.Image + ')'"
+>
+  <div class="layer">
+    <h1 style="padding-top: 10%; font-weight: bolder; font-size: 6vh">
+      {{ blogDetails.Title }}
+    </h1>
+    <h3 style="font-size: 3vh">{{ blogDetails.Description }}</h3>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+        <img
+          width="50"
+          height="50"
+          style="border-radius: 50%"
+          [src]="blogUser.Image"
+        />
+      </div>
+      <mat-card-title>{{ blogUser.Name }}</mat-card-title>
+      <mat-card-subtitle>{{ blogUser.Email }}</mat-card-subtitle>
+      <span class="spacer"></span>
+      <button mat-icon-button [disabled]="!isLoggedIn" (click)="likeBlog()">
+        <mat-icon
+          matBadge="{{ blogDetails.Likes }}"
+          matBadgeColor="accent"
+          color="warn"
+          >favorite</mat-icon
+        >
+      </button>
+      <button mat-icon-button disabled>
+        <mat-icon
+          matBadge="{{ blogDetails.Comments.length }}"
+          matBadgeColor="accent"
+          color="primary"
+          >content_copy</mat-icon
+        >
+      </button>
+    </mat-card-header>
+    <mat-card-content>
+      <div [innerHTML]="blogDetails.Body"></div>
+    </mat-card-content>
+    <mat-card-actions *ngIf="isLoggedIn">
+      <form [formGroup]="commentForm">
+        <label> <b> Write Comment : </b></label>
+        <textarea class="form-control" formControlName="body"></textarea>
+        <div class="text-right m-2">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="postComment()"
+            [disabled]="commentForm.invalid"
+          >
+            Post
+          </button>
+        </div>
+      </form>
+    </mat-card-actions>
+    <div class="row" *ngFor="let comment of blogDetails.Comments">
+      <app-comment [commentDetails]="comment" style="width: 100%"></app-comment>
+    </div>
+  </mat-card>
+</div>

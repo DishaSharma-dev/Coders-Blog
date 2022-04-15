@@ -1,0 +1,19 @@
+
+<mat-toolbar color="primary" class="header app-toolbar">
+    <span class="pl-2">Coder's Blog</span>
+    <span class="spacer"></span>
+    <button mat-button   class="mr-2"  [routerLink]="['/blogs']">Blogs</button>
+    <div *ngIf="isLoggedIn">
+      <button mat-button  class="mr-2" [routerLink]="['/MyBlogs']">My Blogs</button>
+      <button mat-button class="mr-2"  [routerLink]="['/WriteBlog']">Write a blog</button>
+      <button mat-button class="mr-2" [routerLink]='["/Profile"]'>Profile</button>
+      <button mat-button class="mr-2"  (click)="signOut()">Sign Out</button>
+    </div>
+    <div *ngIf="!isLoggedIn">
+      <button mat-button   class="mr-2" routerLink="/SignIn">Sign In</button>
+      <button mat-button   class="ml-2" routerLink="/SignUp">Sign Up</button>
+    </div>
+   
+     
+  </mat-toolbar>
+  

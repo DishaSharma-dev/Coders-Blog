@@ -1,0 +1,56 @@
+<mat-card class="example-card shadow-lg mt-4" *ngIf="blog && blogUser">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ blogUser.Name }}</mat-card-title>
+    <mat-card-subtitle>{{ blog.Date | dateAgo }}</mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    [src]="blog.Image"
+    height="200"
+    alt="Photo of a Shiba Inu"
+  />
+  <mat-card-content>
+    <mat-chip-list aria-label="Fish selection">
+      <mat-chip color="primary" selected>{{ blog.Category }}</mat-chip>
+    </mat-chip-list>
+    <h4 class="mt-2 mb-1">
+      <strong>{{ blog.Title }}</strong>
+    </h4>
+    <span style="text-align: justify; text-justify: inter-word">
+      {{ blog.Description | truncate }}
+    </span>
+  </mat-card-content>
+  <mat-card-actions class="d-flex justify-content-between text-right">
+    <div>
+      <button
+        *ngIf="blog.UserId == userId"
+        mat-icon-button
+        (click)="deleteBlog(blog._id)"
+      >
+        <mat-icon color="warn">delete</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon
+          matBadge="{{ blog.Comments.length }}"
+          matBadgeColor="accent"
+          color="primary"
+          class="mr-3"
+          >comment</mat-icon
+        >
+      </button>
+      <button mat-icon-button>
+        <mat-icon
+          matBadge="{{ blog.Likes }}"
+          matBadgeColor="accent"
+          color="warn"
+          >favorite</mat-icon
+        >
+      </button>
+    </div>
+
+    <button mat-raised-button class="mb-3" [routerLink]="['/Blog', blog._id]">
+      Read More
+    </button>
+  </mat-card-actions>
+</mat-card>

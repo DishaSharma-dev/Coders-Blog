@@ -1,0 +1,14 @@
+mat-form-field
+{
+    width: 50%;
+}
+
+mat-expansion-panel
+{
+    padding: 1%;
+    margin: 1%;
+}
+mat-panel-title
+{
+    font-weight: bold;
+}

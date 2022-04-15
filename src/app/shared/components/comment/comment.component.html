@@ -1,0 +1,17 @@
+<mat-card class="m-1">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+        <img
+          width="50"
+          height="50"
+          style="border-radius: 50%"
+          [src]="userImage"
+        />
+      </div>
+        <mat-card-title>{{ userName }}</mat-card-title>
+        <mat-card-subtitle>{{ commentDetails.Date | dateAgo }}</mat-card-subtitle>
+      </mat-card-header>
+    <mat-card-content style="height: 60%">
+      <p class="pl-5 ml-2 pr-5">{{commentDetails.Body}}</p>
+    </mat-card-content>
+</mat-card>

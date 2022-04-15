@@ -1,0 +1,64 @@
+<div class="container">
+    <mat-card class="shadow pt-5 pb-5 pl-5 pr-5 m-2">
+      <mat-card-title>Sign Up</mat-card-title>
+      <mat-card-subtitle>Start your journery with us.</mat-card-subtitle>
+      <mat-card-content>
+        <form [formGroup]="signupForm">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="Name" type="text"/>
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="formFieldHasError('Name')"
+              >This field is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input matInput formControlName="Email" type="email" />
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="formFieldHasError('Email')"
+              >This field is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="Password" />
+            <mat-icon matSuffix>lock</mat-icon>
+            <mat-error *ngIf="formFieldHasError('Password')"
+              >This field is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" formControlName="ConfirmPassword" />
+            <mat-error *ngIf="formFieldHasError('ConfirmPassword')"
+              >
+              <span *ngIf="signupForm.controls['ConfirmPassword'].hasError('required')">This field is required</span>
+              <span *ngIf="signupForm.controls['ConfirmPassword'].hasError('confirmedValidator')">Password and Confirm Password must be match.</span>
+              </mat-error
+            >
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions class="d-flex justify-content-around">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="signupForm.invalid"
+          (click)="onSubmit()"
+        >
+          Sign Up
+        </button>
+        <button
+          class="btn btn-link"
+          style="box-shadow: none"
+          type="button"
+          [routerLink]="['/SignIn']"
+        >
+          Already user | Sign In
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  

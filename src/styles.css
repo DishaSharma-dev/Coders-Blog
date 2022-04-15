@@ -1,0 +1,68 @@
+
+/* You can add global styles to this file, and also import other style files */
+
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+@import '~quill-emoji/dist/quill-emoji.css';
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.spacer {
+    flex: 1 1 auto;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    padding-top: 10px;
+  }
+  
+  mat-label
+  {
+    color: black;
+  }
+  
+  .child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .success-snackbar {
+    background-color: rgb(38, 185, 38);
+    color: white;
+    font-weight: bolder;
+  }
+  
+  .failure-snackbar {
+    background-color: red;
+    color: white;
+    font-weight: bolder;
+  }
+  
+  .mat-card.blog-mat-card {
+    box-shadow: none;
+  }
+  
+  /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3f51b5; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3f51b5; 
+}
